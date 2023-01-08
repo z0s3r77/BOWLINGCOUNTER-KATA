@@ -2,9 +2,17 @@ import pytest
 from src.counterCard import ScoreCard
 
 
+
+def test_0Scores():
+
+    pins = "--------------------"
+    total = 0
+    scoreCard = ScoreCard(pins)
+    assert total == scoreCard.getTotalScore()
+
+
 def test_TotalScoreHisttingPinsTest():
 
-    #Hitting pins total = 60
     pins = "12345123451234512345"
     total = 60
     scoreCard = ScoreCard(pins)
@@ -35,7 +43,7 @@ def test_TotalScoreSpareTest():
     assert total == scoreCard.getTotalScore()
 
     """
-    El siguiente caso test no cuadra, es del DRIVE DEL PROFE
+    El siguiente caso test no cuadra, es del DRIVE 
 
     # pins = "9-3/613/815/ -/ 8-7/8/8"
     # total = 131
