@@ -35,18 +35,18 @@ def test_TotalScoreHittingPinsFailTest():
 
 
 
-# def test_TotalScoreSpareTest():
+def test_TotalScoreSpareTest():
 
-#     pins = "5/5/5/5/5/5/5/5/5/5/5"
-#     total = 150
-#     scoreCard = ScoredCard(pins)
-#     assert total == scoreCard.getTotalScore()
+    pins = "5/5/5/5/5/5/5/5/5/5/5"
+    total = 150
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
 
 
-#     pins = "9-3/613/815/-/8-7/8/8"
-#     total = 131
-#     scoreCard = ScoreCard(pins)
-#     assert total == scoreCard.getTotalScore()
+    # pins = "9-3/613/815/-/8-7/8/8"
+    # total = 131
+    # scoreCard = ScoredCard(pins)
+    # assert total == scoreCard.getTotalScore()
 
 
 # def test_TotalScoreStrikeTest():

@@ -5,7 +5,7 @@ class ScoredCard():
         self.score = 0
         self.frames = {0:0, 1:0, 2:0, 3:0,
                        4:0, 5:0, 6:0, 7:0,
-                       8:0, 9:0}
+                       8:0, 9:0, 10:0}
         self.lastValue = 0
 
         
@@ -14,6 +14,9 @@ class ScoredCard():
 
         dictionary = {}        
         self.card = list(self.card)
+
+        if len(self.card) == 21:
+            self.card.append('-')
 
         #Juntamos las tiradas por frames
         frames = []
@@ -37,21 +40,26 @@ class ScoredCard():
 
         for frame in self.card:
         
-            for roll in self.card[frame]:
-                
-                if roll in "123456789":
-                    self.frames[frame] += int(roll)
-                    self.lastValue = int(roll)
+            if frame == 10:
+                break
+            else:
+                for roll in self.card[frame]:
+                    
+                    if roll in "123456789":
+                        self.frames[frame] += int(roll)
+                        self.lastValue = int(roll)
 
-                if roll == "-":
-                    self.frames[frame] += 0
-                    self.lastValue = 0
+                    if roll == "-":
+                        self.frames[frame] += 0
+                        self.lastValue = 0
 
-                if roll == "/":
-                    if frame == 9:
-                        self.frames[frame] += 10 + int(self.card[10][0])
-                    else:
-                        self.frames[frame] += 10 + int(self.card[frame][0])
+                    if roll == "/":
+                        self.frames[frame] -= self.lastValue
+                        if frame == 9:
+                            self.frames[frame] += 10 + int(self.card[10][0])
+                            
+                        else:
+                            self.frames[frame] += 10 + int(self.card[frame][0])
 
             
     def getTotalScore(self):
@@ -68,7 +76,7 @@ class ScoredCard():
 
 
 
-card = ScoredCard("12345123451234512345")
+card = ScoredCard("5/5/5/5/5/5/5/5/5/5/5")
 
 
 print(card.getTotalScore())
