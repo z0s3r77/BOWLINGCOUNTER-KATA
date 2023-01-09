@@ -27,6 +27,8 @@ class ScoreCard():
                 rolls += 1
                 i = 0
 
+            
+
             if roll in "123456789":
                 
                 if self.spare == False:
@@ -36,9 +38,11 @@ class ScoreCard():
 
                     if rolls == 10:
                         self.score += int(roll)
+                        self.spare == False
                     else:
                         self.score += int(roll) * 2
                         self.lastNumber = int(roll)
+                        self.spare = False
 
 
 
@@ -50,6 +54,11 @@ class ScoreCard():
 
             if roll == "-":
                 self.score += 0
+                self.lastNumber = 0
 
 
-                
+
+pins = "X9-9-9-9-9-9-9-9-9-"
+total = 131
+scoreCard = ScoreCard(pins)
+print(scoreCard.getTotalScore())

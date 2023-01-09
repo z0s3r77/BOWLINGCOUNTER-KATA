@@ -42,14 +42,12 @@ def test_TotalScoreSpareTest():
     scoreCard = ScoreCard(pins)
     assert total == scoreCard.getTotalScore()
 
-    """
-    El siguiente caso test no cuadra, es del DRIVE 
 
-    # pins = "9-3/613/815/ -/ 8-7/8/8"
-    # total = 131
-    # scoreCard = ScoreCard(pins)
-    # assert total == scoreCard.getTotalScore()
-    """
+    pins = "9-3/613/815/-/8-7/8/8"
+    total = 131
+    scoreCard = ScoreCard(pins)
+    assert total == scoreCard.getTotalScore()
+
 
 # def test_TotalScoreStrikeTest():
 
@@ -57,3 +55,4 @@ def test_TotalScoreSpareTest():
 #     total = 100
 #     scoreCard = ScoreCard(pins)
 #     assert total == scoreCard.getTotalScore()
+
