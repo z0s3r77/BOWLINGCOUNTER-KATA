@@ -16,7 +16,7 @@ class ScoredCard():
         self.card = list(self.card)
 
         if len(self.card) == 21:
-            self.card.append('-')
+            self.card.append('0')
 
         #Juntamos las tiradas por frames
         frames = []
@@ -59,12 +59,15 @@ class ScoredCard():
                             self.frames[frame] += 10 + int(self.card[10][0])
                             
                         else:
-                            self.frames[frame] += 10 + int(self.card[frame][0])
+                            if self.card[frame+1][0] == '-':
+                                self.frames[frame] += 10
+                            else:
+                                self.frames[frame] += 10 + int(self.card[frame+1][0])
 
+            
             
     def getTotalScore(self):
         self.calculateScore()
-
         return sum(self.frames.values())
 
 
@@ -77,7 +80,7 @@ class ScoredCard():
 
 
 card = ScoredCard("5/5/5/5/5/5/5/5/5/5/5")
-
+total = 100
 
 print(card.getTotalScore())
 
