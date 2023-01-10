@@ -11,7 +11,6 @@ class ScoredCard():
         
 
     def convertCardIntoDict(self):
-      
         self.card = self.card.replace( '-' , "0")
         self.card = self.card.replace('X', 'X'+'0')
         self.card = list(self.card)
@@ -66,7 +65,10 @@ class ScoredCard():
                             else:
                                 self.frames[frame] += 10 + int(self.card[10][0])
                         else:
-                            self.frames[frame] += 10 + int(self.card[frame+1][0])
+                            if self.card[frame+1][0] == "X":
+                                self.frames[frame] += 10 + 10
+                            else:
+                                self.frames[frame] += 10 + int(self.card[frame+1][0])
 
                     
                     if roll == "X":
@@ -95,11 +97,6 @@ class ScoredCard():
 
 
 
-                        """
-                        Se tensa
-                        """
-
-
                         
 
 
@@ -114,14 +111,5 @@ class ScoredCard():
                 
             
 
-    
 
-
-
-
-# card = ScoredCard("X5/X5/XX5/--5/X5/")
-# total = 175
-
-
-# print(card.getTotalScore())
 

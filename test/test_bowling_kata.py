@@ -96,7 +96,7 @@ def test_TotalScoreStrikeTest():
     assert total == scoreCard.getTotalScore()
 
 
-    # pins = "X5/X5/XX5/--5/X5/"
-    # total = 175
-    # scoreCard = ScoredCard(pins)
-    # assert total == scoreCard.getTotalScore()
+    pins = "X5/X5/XX5/--5/X5/"
+    total = 175
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
