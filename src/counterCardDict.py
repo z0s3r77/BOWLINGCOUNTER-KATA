@@ -70,6 +70,10 @@ class ScoredCard():
                         if self.card[frame+1][0] == "X":
                             self.frames[frame] += 10
 
+                            if self.card[frame+2][0] == "X":
+                                self.frames[frame] += 10
+                            else:
+                                self.frames[frame] += int(self.card[frame+2][0])
 
 
 
@@ -77,13 +81,14 @@ class ScoredCard():
 
                         else:
                             self.frames[frame] += int(self.card[frame+1][0])
-
-
-
-                        if self.card[frame+1][1] == "X":
-                            self.frames[frame] += 10
-                        else:
                             self.frames[frame] += int(self.card[frame+1][1])
+
+
+
+
+                        # if self.card[frame+1][1] == "X":
+                        #     self.frames[frame] += 10
+                        # else:
                         
                         """
                         Se tensa
@@ -110,7 +115,7 @@ class ScoredCard():
 
 
 card = ScoredCard("XX9-9-9-9-9-9-9-9-")
-total = 100
+total = 120
 
 print(card.getTotalScore())
 
