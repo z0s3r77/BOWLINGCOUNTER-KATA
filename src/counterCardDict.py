@@ -1,9 +1,9 @@
 class ScoredCard():
 
+    #"9-3/613/815/-/8-7/8/8"
     def __init__(self, card):
 
         self.card = card
-        self.score = 0
         self.resultsPerFrame = {0:0, 1:0, 2:0, 3:0,
                        4:0, 5:0, 6:0, 7:0,
                        8:0, 9:0, 10:0}
@@ -24,7 +24,7 @@ class ScoredCard():
 
 
 
-        #Juntamos las tiradas por parejas
+        #Juntamos las tiradas por parejas ("los frames")
         # ['9', '0', '3', '/', '6', '1', '3', '/', '8', '1', '5', '/', '0', '/', '8', '0', '7', '/', '8', '/', '8', '0']
         # [['9', '0'], ['3', '/'], ['6', '1'], ['3', '/'], ['8', '1'], ['5', '/'], ['0', '/'], ['8', '0'], ['7', '/'], ['8', '/'], ['8', '0']]
         resultsPerFrame = []
@@ -57,7 +57,7 @@ class ScoredCard():
 
 
         # Vamos obteniendo los resultados por frame
-        for frame in self.card:        
+        for frame in self.card:           
             if frame == 10:
                 break
             else:
@@ -68,6 +68,7 @@ class ScoredCard():
                         self.resultsPerFrame[frame] += int(roll)
 
 
+                    
                     #Si roll es un spare, restamos el resultado anterior del numero
                     if roll == "/":
                         self.resultsPerFrame[frame] -= int(self.card[frame][0])
@@ -79,6 +80,7 @@ class ScoredCard():
                             self.resultsPerFrame[frame] += 10 + int(self.card[frame+1][0])
 
 
+                   
                     #Si el roll es un strike , se debe de sumar 10, más las dos tiradas que le sigan
                     if roll == "X":
                         self.resultsPerFrame[frame] += 10
@@ -131,4 +133,4 @@ if __name__ == '__main__':
         return card.getTotalScore()    
 
 
-    # print(getResult("9-3/613/815/-/8-7/8/8")) debe devolver 131
+    print(getResult("9-3/613/815/-/8-7/8/8")) 
