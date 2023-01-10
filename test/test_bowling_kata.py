@@ -72,7 +72,31 @@ def test_TotalScoreStrikeTest():
     scoreCard = ScoredCard(pins)
     assert total == scoreCard.getTotalScore()
 
+    pins = "XXX9-9-9-9-9-9-9-"
+    total = 141
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
 
 
+    pins = "9-9-9-9-9-9-9-9-9-XXX"
+    total = 111
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
 
 
+    pins = "XXXXXXXXXXXX"
+    total = 300
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
+
+
+    pins = "8/549-XX5/53639/9/X"
+    total = 149
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
+
+
+    # pins = "X5/X5/XX5/--5/X5/"
+    # total = 175
+    # scoreCard = ScoredCard(pins)
+    # assert total == scoreCard.getTotalScore()

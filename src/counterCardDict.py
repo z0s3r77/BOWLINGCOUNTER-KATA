@@ -52,14 +52,19 @@ class ScoredCard():
                         self.frames[frame] += int(roll)
                         self.lastValue = int(roll)
 
+
                     if roll == "-":
                         self.frames[frame] += 0
                         self.lastValue = 0
 
+
                     if roll == "/":
                         self.frames[frame] -= self.lastValue
                         if frame == 9:
-                            self.frames[frame] += 10 + int(self.card[10][0])
+                            if self.card[10][0] == "X":
+                                self.frames[frame] += 10 + 10
+                            else:
+                                self.frames[frame] += 10 + int(self.card[10][0])
                         else:
                             self.frames[frame] += 10 + int(self.card[frame+1][0])
 
@@ -77,19 +82,19 @@ class ScoredCard():
 
 
 
-
-
                         else:
                             self.frames[frame] += int(self.card[frame+1][0])
-                            self.frames[frame] += int(self.card[frame+1][1])
+
+
+                            if self.card[frame+1][1] == "/":
+                                self.frames[frame] += 10 
+                                self.frames[frame] -= int(self.card[frame+1][0])
+                            else:
+                                self.frames[frame] += int(self.card[frame+1][1])
 
 
 
 
-                        # if self.card[frame+1][1] == "X":
-                        #     self.frames[frame] += 10
-                        # else:
-                        
                         """
                         Se tensa
                         """
@@ -114,8 +119,9 @@ class ScoredCard():
 
 
 
-card = ScoredCard("XX9-9-9-9-9-9-9-9-")
-total = 120
+# card = ScoredCard("X5/X5/XX5/--5/X5/")
+# total = 175
 
-print(card.getTotalScore())
+
+# print(card.getTotalScore())
 
