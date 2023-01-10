@@ -11,10 +11,11 @@ class ScoredCard():
         
 
     def convertCardIntoDict(self):
-
-        dictionary = {}        
+      
+        self.card = self.card.replace( '-' , "0")
+        self.card = self.card.replace('X', 'X'+'0')
         self.card = list(self.card)
-
+        
         if len(self.card) == 21:
             self.card.append('0')
 
@@ -23,8 +24,10 @@ class ScoredCard():
         for i in range(0, len(self.card),2 ):
             frames.append([self.card[i], self.card[i+1]])
 
-
+        
+        
         #Creamos un diccionario que es el frame con el valor de las tiradas
+        dictionary = {}  
         for i in range(0, len(frames)):
             dictionary[i] = frames[i]
 
@@ -45,7 +48,7 @@ class ScoredCard():
             else:
                 for roll in self.card[frame]:
                     
-                    if roll in "123456789":
+                    if roll in "1234567890":
                         self.frames[frame] += int(roll)
                         self.lastValue = int(roll)
 
@@ -57,15 +60,42 @@ class ScoredCard():
                         self.frames[frame] -= self.lastValue
                         if frame == 9:
                             self.frames[frame] += 10 + int(self.card[10][0])
-                            
                         else:
-                            if self.card[frame+1][0] == '-':
-                                self.frames[frame] += 10
-                            else:
-                                self.frames[frame] += 10 + int(self.card[frame+1][0])
+                            self.frames[frame] += 10 + int(self.card[frame+1][0])
+
+                    
+                    if roll == "X":
+                        self.frames[frame] += 10
+
+                        if self.card[frame+1][0] == "X":
+                            self.frames[frame] += 10
+
+
+
+
+
+
+                        else:
+                            self.frames[frame] += int(self.card[frame+1][0])
+
+
+
+                        if self.card[frame+1][1] == "X":
+                            self.frames[frame] += 10
+                        else:
+                            self.frames[frame] += int(self.card[frame+1][1])
+                        
+                        """
+                        Se tensa
+                        """
+
+
+                        
+
+
 
             
-            
+
     def getTotalScore(self):
         self.calculateScore()
         return sum(self.frames.values())
@@ -79,7 +109,7 @@ class ScoredCard():
 
 
 
-card = ScoredCard("5/5/5/5/5/5/5/5/5/5/5")
+card = ScoredCard("XX9-9-9-9-9-9-9-9-")
 total = 100
 
 print(card.getTotalScore())

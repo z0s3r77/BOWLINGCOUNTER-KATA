@@ -43,17 +43,36 @@ def test_TotalScoreSpareTest():
     assert total == scoreCard.getTotalScore()
 
 
-    # pins = "9-3/613/815/-/8-7/8/8"
-    # total = 131
+    pins = "9-3/613/815/-/8-7/8/8"
+    total = 131
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
+
+
+
+def test_TotalScoreStrikeTest():
+
+    pins = "X9-9-9-9-9-9-9-9-9-"
+    total = 100
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
+
+    pins = "9-9-9-9-9-9-9-9-9-X9-"
+    total = 100
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
+
+    pins = "X9-X9-9-9-9-9-9-9-"
+    total = 110
+    scoreCard = ScoredCard(pins)
+    assert total == scoreCard.getTotalScore()
+
+    # pins = "XX9-9-9-9-9-9-9-9-"
+    # total = 120
     # scoreCard = ScoredCard(pins)
     # assert total == scoreCard.getTotalScore()
 
 
 
-# def test_TotalScoreStrikeTest():
 
-#     pins = "X9-9-9-9-9-9-9-9-9-"
-#     total = 100
-#     scoreCard = ScoreCard(pins)
-#     assert total == scoreCard.getTotalScore()
 
