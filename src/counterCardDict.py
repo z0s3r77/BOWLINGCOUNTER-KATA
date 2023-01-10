@@ -79,32 +79,34 @@ class ScoredCard():
                             self.resultsPerFrame[frame] += 10 + int(self.card[frame+1][0])
 
 
-                    
+                    #Si el roll es un strike , se debe de sumar 10, más las dos tiradas que le sigan
                     if roll == "X":
-
                         self.resultsPerFrame[frame] += 10
 
-                        if self.card[frame+1][0] == "X":
 
+                    #Si la siguiente tirada es un strike, sumamos 10 y comprobamos si la siguiente tirada es otro strike
+                        if self.card[frame+1][0] == "X":
                             self.resultsPerFrame[frame] += 10
 
                             if self.card[frame+2][0] == "X":
-
-                                self.resultsPerFrame[frame] += 10
+                                self.resultsPerFrame[frame] += 10   #Aquí tendríamos un total de 30 
 
                             else:
                                 self.resultsPerFrame[frame] += int(self.card[frame+2][0])
 
                         else:
-
+                            #Como la siguiente tirada no es un strike, sumamos el resultado
+                            #Al ser la primera tirada del siguiente frame, no puede ser un spare, será del 0 a 9
                             self.resultsPerFrame[frame] += int(self.card[frame+1][0])
 
-                            if self.card[frame+1][1] == "/":
 
+                            #La segunda tirada del frame si puede ser ser un spare, 
+                            # en ese caso se suma 10 y se resta el numero anterior
+                            if self.card[frame+1][1] == "/":
                                 self.resultsPerFrame[frame] += 10 
                                 self.resultsPerFrame[frame] -= int(self.card[frame+1][0])
-                            
                             else:
+                            #En caso de que la segunda tirada no sea un spare, será otro numero
                                 self.resultsPerFrame[frame] += int(self.card[frame+1][1])
 
 
