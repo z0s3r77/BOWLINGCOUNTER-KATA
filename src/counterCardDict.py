@@ -68,26 +68,15 @@ class ScoredCard():
                         self.resultsPerFrame[frame] += int(roll)
 
 
-
-
                     #Si roll es un spare, restamos el resultado anterior del numero
                     if roll == "/":
                         self.resultsPerFrame[frame] -= int(self.card[frame][0])
-
-                        #En caso de ser la última partida, si hay un pleno se suma 10 del pleno , más 10 del spare
-                        if frame == 9:
-                            if self.card[10][0] == "X":
-                                self.resultsPerFrame[frame] += 10 + 10
-                            else:
-                                #Si no hay pleno, se suma el último resultado más el 10 del spare
-                                self.resultsPerFrame[frame] += 10 + int(self.card[10][0])
+                        #En caso de que la siguiente tirada sea un strike, se suma 10 del strike y 10 del spare
+                        #Si no es un strike, se suma el numero de la tirada
+                        if self.card[frame+1][0] == "X":
+                            self.resultsPerFrame[frame] += 10 + 10
                         else:
-                        
-                        #En caso de ser 
-                            if self.card[frame+1][0] == "X":
-                                self.resultsPerFrame[frame] += 10 + 10
-                            else:
-                                self.resultsPerFrame[frame] += 10 + int(self.card[frame+1][0])
+                            self.resultsPerFrame[frame] += 10 + int(self.card[frame+1][0])
 
 
                     
