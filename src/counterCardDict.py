@@ -4,9 +4,7 @@ class ScoredCard():
     def __init__(self, card):
 
         self.card = card
-        self.resultsPerFrame = {0:0, 1:0, 2:0, 3:0,
-                       4:0, 5:0, 6:0, 7:0,
-                       8:0, 9:0, 10:0}
+
 
         
 
@@ -49,7 +47,7 @@ class ScoredCard():
 
 
     # calculateScore es la suma del valor de los 10 frames
-    def calculateScore(self):
+    def calculateScore(self, resultsPerFrame):
 
         #Convierte el string en diccionario 
         # EJ: {0: ['9', '0'], 1: ['3', '/'], 2: ['6', '1'], 3: ['3', '/'], 4: ['8', '1'], 5: ['5', '/'], 6: ['0', '/'], 7: ['8', '0'], 8: ['7', '/'], 9: ['8', '/'], 10: ['8', '0']}
@@ -65,60 +63,65 @@ class ScoredCard():
                     
                     #Si roll es un numero lo sumamos al frame actual
                     if roll in "1234567890":
-                        self.resultsPerFrame[frame] += int(roll)
+                        resultsPerFrame[frame] += int(roll)
 
 
                     
                     #Si roll es un spare, restamos el resultado anterior del numero
                     if roll == "/":
-                        self.resultsPerFrame[frame] -= int(self.card[frame][0])
+                        resultsPerFrame[frame] -= int(self.card[frame][0])
                         #En caso de que la siguiente tirada sea un strike, se suma 10 del strike y 10 del spare
                         #Si no es un strike, se suma el numero de la tirada
                         if self.card[frame+1][0] == "X":
-                            self.resultsPerFrame[frame] += 10 + 10
+                            resultsPerFrame[frame] += 10 + 10
                         else:
-                            self.resultsPerFrame[frame] += 10 + int(self.card[frame+1][0])
+                            resultsPerFrame[frame] += 10 + int(self.card[frame+1][0])
 
 
                    
                     #Si el roll es un strike , se debe de sumar 10, más las dos tiradas que le sigan
                     if roll == "X":
-                        self.resultsPerFrame[frame] += 10
+                        resultsPerFrame[frame] += 10
 
 
                     #Si la siguiente tirada es un strike, sumamos 10 y comprobamos si la siguiente tirada es otro strike
                         if self.card[frame+1][0] == "X":
-                            self.resultsPerFrame[frame] += 10
+                            resultsPerFrame[frame] += 10
 
                             if self.card[frame+2][0] == "X":
-                                self.resultsPerFrame[frame] += 10   #Aquí tendríamos un total de 30 
+                                resultsPerFrame[frame] += 10   #Aquí tendríamos un total de 30 
 
                             else:
-                                self.resultsPerFrame[frame] += int(self.card[frame+2][0])
+                                resultsPerFrame[frame] += int(self.card[frame+2][0])
 
                         else:
                             #Como la siguiente tirada no es un strike, sumamos el resultado
                             #Al ser la primera tirada del siguiente frame, no puede ser un spare, será del 0 a 9
-                            self.resultsPerFrame[frame] += int(self.card[frame+1][0])
+                            resultsPerFrame[frame] += int(self.card[frame+1][0])
 
 
                             #La segunda tirada del frame si puede ser ser un spare, 
                             # en ese caso se suma 10 y se resta el numero anterior
                             if self.card[frame+1][1] == "/":
-                                self.resultsPerFrame[frame] += 10 
-                                self.resultsPerFrame[frame] -= int(self.card[frame+1][0])
+                                resultsPerFrame[frame] += 10 
+                                resultsPerFrame[frame] -= int(self.card[frame+1][0])
                             else:
                             #En caso de que la segunda tirada no sea un spare, será otro numero
-                                self.resultsPerFrame[frame] += int(self.card[frame+1][1])
+                                resultsPerFrame[frame] += int(self.card[frame+1][1])
 
 
 
     def getTotalScore(self):
+        
         #Devuelve los valores de resultsPerFrame
-        self.calculateScore()
+        resultsPerFrame = {0:0, 1:0, 2:0, 3:0,
+                       4:0, 5:0, 6:0, 7:0,
+                       8:0, 9:0, 10:0}
+
+        self.calculateScore(resultsPerFrame)
         
         #Devuelve la suma de todos los frames
-        return sum(self.resultsPerFrame.values())
+        return sum(resultsPerFrame.values())
 
 
                 
