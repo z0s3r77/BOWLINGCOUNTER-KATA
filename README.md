@@ -20,3 +20,23 @@ Este codigo se ha desarrollado a partir de TDD (Test-Driven-Developmen). El cicl
 Dicho kata y casos test fueron propuestos por @dfleta, el profesor.
 
 ## Uso
+
+Una vez clonado el repositorio y ejecutado el archivo setup.py, debemos ejecutar:
+```
+pytest test/test_bowling_kata.py
+```
+Esto nos debe pasar todos los casos test, sino es así, asegurate de tener instalado pytest:
+```
+pip3 install pytest
+```
+Una vez pasados los tests, podemos ir a counterCardDict.py y añadir el caso que queramos:
+```
+    def getResult(scoreCard):
+
+        card = ScoredCard(scoreCard)
+        return card.getTotalScore()    
+
+
+    print(getResult("9-3/613/815/-/8-7/8/8")) #Aquí iría el caso en particular 
+
+```
